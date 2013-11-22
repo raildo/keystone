@@ -22,22 +22,21 @@ from keystone.quota import controllers
 def append_v3_routers(mapper, routers):
     quota_controller = controllers.DomainQuota()
 
-    '''----------DEBUG-----------'''
-    import pdb
-    pdb.set_trace()
-    '''----------DEBUG-----------'''
+    print '----------------------append_v3_routers 1'
     
     mapper.connect('/domains/{domain_id}/quotas',
                    controller=quota_controller,
                    action='get_domain_quotas_for_region',
                    conditions=dict(method=['GET']))
+    print '----------------------append_v3_routers 2'
 
     mapper.connect('/domains/{domain_id}/quotas',
                    controller=quota_controller,
                    action='update_domain_quotas_in_region',
                    conditions=dict(method=['PUT']))
-
+    print '----------------------append_v3_routers 3'
     mapper.connect('/domains/{domain_id}/quotas',
                    controller=quota_controller,
                    action='delete_domain_quotas_from_region',
                    conditions=dict(method=['DELETE']))
+    print '----------------------append_v3_routers 4'
