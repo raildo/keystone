@@ -22,6 +22,11 @@ from keystone.quota import controllers
 def append_v3_routers(mapper, routers):
     quota_controller = controllers.DomainQuota()
 
+    '''----------DEBUG-----------'''
+    import pdb
+    pdb.set_trace()
+    '''----------DEBUG-----------'''
+    
     mapper.connect('/domains/{domain_id}/quotas',
                    controller=quota_controller,
                    action='get_domain_quotas_for_region',
