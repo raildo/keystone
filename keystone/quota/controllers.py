@@ -84,7 +84,7 @@ class DomainQuota(controller.V3Controller):
         return list(list([child, defaults]))
 
     @controller.protected()
-    def get_domain_quotas_for_region(self, context, domain_id,
+    def get_domain_quotas_for_region(self, domain_id,
                                      quotas=None):
         """Get quotas from domain_id by region."""
         if quotas is None:
