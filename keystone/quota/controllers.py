@@ -87,25 +87,38 @@ class DomainQuota(controller.V3Controller):
     def get_domain_quotas_for_region(self, domain_id,
                                      quotas=None):
         """Get quotas from domain_id by region."""
+        print '----------- DEBUG START --------------'
+        print '--------------------------------------'
+        print '------------- QUOTAS -----------------'
+        print quotas
+        print '--------------------------------------'
         if quotas is None:
             raise exception.ValidationError(attribute="quotas",
                                             target="request")
-
+        print '---------------DOMAIN-----------------'
         domain = self.identity_api.get_domain(domain_id)
+        print domain
+        print '--------------------------------------'
         if domain is None:
             raise exception.DomainNotFound(domain_id)
 
         self._require_attribute(quotas, 'region')
         self._require_attribute(quotas, 'services')
+        print '-------- REGION AND SERVICES------------'
         region = quotas['region']
         services = quotas['services']
-
+        print region
+        print services
+        print '--------------------------------------'
         #return ceilings
         ceilings = self.quota_api.get_domain_quota_by_services(services,
                                                                domain_id,
                                                                region)
         result = self._get_default_values(domain_id, region, ceilings,
                                           services)
+        print '--------------------------------------'
+        print result
+        print '--------------------------------------'
         return result
 
     @controller.protected()
